@@ -1,0 +1,66 @@
+NASKAH PITCHING JAGA (sekitar 5 menit) + SKRIP DEMO
+
+Pembagian waktu:
+0:00 - 0:40  Hook dan masalah
+0:40 - 1:20  Insight golden hour
+1:20 - 2:00  Solusi
+2:00 - 3:30  Demo
+3:30 - 4:10  Arsitektur dan Responsible AI
+4:10 - 4:40  Model bisnis
+4:40 - 5:00  Penutup
+
+
+HOOK (0:00)
+"Bayangkan ibu kita menerima WhatsApp: undangan pernikahan, dengan file yang harus dibuka. Beliau buka. Dalam hitungan menit, saldo m-banking bisa habis."
+
+MASALAH (0:15)
+"Ini bukan kasus langka. Sejak akhir 2024 sampai September 2026, Indonesia Anti-Scam Centre OJK sudah menerima lebih dari 700 ribu laporan penipuan. Kerugian yang dilaporkan sudah lebih dari 9 triliun rupiah per Januari 2026, dan yang berhasil diblokir baru sekitar 437 miliar."
+
+INSIGHT (0:40)
+"Kenapa sedikit sekali yang terselamatkan? Data OJK menunjukkan sekitar 80 persen korban baru melapor lebih dari 12 jam setelah kejadian. Padahal uang penipuan bisa pindah dalam kurang dari 1 jam. Masalahnya bukan cuma orang tidak tahu modusnya. Saat kejadian, korban panik dan tidak tahu langkah pertama."
+[Kalau ada data kuesioner: "Dari survei kami, X persen responden tidak tahu langkah pertama kalau sudah tertipu."]
+
+SOLUSI (1:20)
+"Kami membangun JAGA, asisten tanggap darurat penipuan digital. JAGA bekerja di dua momen. Sebelum tertipu, JAGA mengecek pesan yang mencurigakan. Sesudah tertipu, JAGA masuk mode golden hour: memandu langkah penyelamatan, menunjukkan kontak resmi, dan menyiapkan kronologi laporan dalam hitungan menit."
+
+DEMO (2:00) - lihat skrip demo di bawah
+
+ARSITEKTUR DAN RESPONSIBLE AI (3:30)
+"Di belakangnya, IBM Bob menangani percakapan: memahami situasi, memilih tool, dan meminta konfirmasi. Langflow menangani eksekusi: analisis yang berpijak pada knowledge base resmi, dijalankan oleh model Groq. Keduanya terhubung lewat MCP.
+Karena ini menyangkut uang dan orang yang sedang panik, kami desain pengamannya sejak awal: JAGA tidak pernah meminta PIN atau OTP, tidak pernah bilang pesan 100 persen aman, hanya menyebut nomor resmi dari knowledge base, dan JAGA tidak pernah mengirim apa pun sendiri. File laporan hanya disimpan setelah user setuju, dan pesan untuk keluarga hanya draft yang dikirim sendiri oleh user. Kami juga menguji dengan pesan berbahasa Jawa supaya pesan normal tidak salah dituduh penipuan."
+"Kami menguji 26 kasus berlabel. Semua 13 pesan penipuan yang jelas terdeteksi berisiko, tidak ada satu pun dari empat pesan normal, termasuk pesan berbahasa Jawa, yang salah dituduh penipuan, dan di enam skenario darurat JAGA tidak pernah mengarang nomor atau meminta OTP. Yang masih kami perbaiki: pesan dari orang asing tanpa permintaan apa pun kadang dinilai rendah."
+
+MODEL BISNIS (4:10)
+"Fitur darurat selalu gratis untuk masyarakat. Pendapatan datang dari bank dan e-wallet yang memasang JAGA sebagai fitur anti-scam, karena nasabah yang melapor lebih cepat berarti kerugian dan beban pengaduan lebih kecil. Ditambah paket keluarga dan program CSR literasi digital."
+
+PENUTUP (4:40)
+"Penipuan akan terus berganti modus. Yang bisa kita ubah adalah jam pertama setelahnya. JAGA memastikan tidak ada lagi yang menghadapinya sendirian dan kebingungan. Terima kasih."
+
+
+SKRIP DEMO (sekitar 90 detik, rekam sebelumnya sebagai cadangan)
+
+Persiapan: Bob terbuka dengan mode JAGA terpilih, Langflow berjalan, folder laporan/ ada di workspace Bob dan terlihat di panel file.
+
+Langkah 1 - Mode Cek
+Ketik: Pak, ini dari J&T, paketnya tertahan. Cek foto paketnya di file ini ya: Lihat_Foto_Paket.apk
+Narasi: "Ibu menerima pesan ini dan bertanya ke JAGA. JAGA memanggil flow analisis di Langflow, dan langsung menandai risiko tinggi karena file APK, lalu menjelaskan dengan bahasa sederhana."
+
+Langkah 2 - Golden Hour
+Ketik: waduh udah kebuka filenya tadi jam 7an, hp ibu saya ada brimo nya
+Narasi: "Sekarang skenario terburuk: filenya sudah terbuka. JAGA langsung masuk mode darurat. Langkah pertama bukan mengisi formulir, tapi menghentikan kerugian: mode pesawat, hubungi BRI dari HP lain, jangan login m-banking."
+
+Langkah 3 - Uji keamanan
+Ketik: ini kode OTP nya 482913 tolong cek
+Narasi: "Orang panik sering asal kirim kode. JAGA menolak menerima OTP dan mengingatkan untuk tidak membagikannya ke siapa pun."
+
+Langkah 4 - Simpan kronologi dan draft pesan keluarga
+Ketik: sudah telepon BRI. tolong simpan kronologinya, dan buatkan pesan untuk anak saya
+Narasi: "JAGA menyiapkan kronologi laporan untuk IASC dengan data pribadi korban dikosongkan. Perhatikan, file tidak langsung disimpan. JAGA menunjukkan isinya dan bertanya dulu: simpan ke file laporan? Balas ya."
+Ketik: ya
+Tunjukkan approval tulis file dari Bob, lalu file kronologi yang muncul di folder laporan/.
+Narasi: "Lalu untuk keluarga, JAGA menyusun draft pesan singkat tanpa data rekening. JAGA tidak mengirimnya. Pengguna sendiri yang menyalin dan mengirim. Tidak ada yang keluar dari JAGA tanpa tangan manusia."
+
+Tips demo:
+- Jangan demo live tanpa cadangan video. Kalau koneksi atau model lambat, putar video
+- Perbesar font Bob supaya terbaca di layar
+- Tutup tab dan notifikasi yang tidak perlu

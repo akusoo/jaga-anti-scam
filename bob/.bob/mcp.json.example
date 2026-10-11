@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "jaga-langflow": {
+      "type": "streamable-http",
+      "url": "GANTI_DENGAN_URL_MCP_DARI_TAB_MCP_SERVER_LANGFLOW",
+      "headers": {
+        "x-api-key": "GANTI_DENGAN_LANGFLOW_API_KEY"
+      },
+      "alwaysAllow": [
+        "jaga_analisis_pesan",
+        "jaga_golden_hour",
+        "ping"
+      ],
+      "disabled": false
+    }
+  }
+}
