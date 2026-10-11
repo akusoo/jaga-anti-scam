@@ -1,0 +1,5 @@
+**/.bob/mcp.json
+**/.bob/mcp.json.example
+tests/hasil/
+__pycache__/
+submission/
