@@ -1,0 +1,32 @@
+{
+  "analisis_pesan": [
+    {"id": "A01", "kategori": "apk_kurir", "pesan": "Selamat siang, ini dari kurir J&T, paket atas nama bapak tertahan. Silakan cek foto paketnya di sini: Lihat_Foto_Paket.apk", "expected": "TINGGI"},
+    {"id": "A02", "kategori": "apk_undangan", "pesan": "Assalamualaikum bu, kami mengundang ibu di acara pernikahan anak kami. Mohon dibuka undangannya ya bu 🙏 [Surat Undangan Pernikahan Digital.apk]", "expected": "TINGGI"},
+    {"id": "A03", "kategori": "apk_tilang", "pesan": "PEMBERITAHUAN: kendaraan anda terekam ETLE melanggar lalu lintas. Lihat bukti pelanggaran: Surat_Tilang-1.0.apk. Abaikan = denda berlipat", "expected": "TINGGI"},
+    {"id": "A04", "kategori": "fake_cs_bank", "pesan": "Nasabah Yth, mulai besok tarif transfer berubah jadi Rp150.000/bulan. Jika tidak setuju silakan isi formulir di bit.ly/tarif-bank-baru dan masukkan kode OTP yang kami kirim.", "expected": "TINGGI"},
+    {"id": "A05", "kategori": "fake_cs_bank", "pesan": "dgn hormat, sy dr CS bank, ada transaksi mencurigakan di rek bpk. utk pembatalan mohon sebutkan 6 digit kode yg masuk sms skrg jg", "expected": "TINGGI"},
+    {"id": "A06", "kategori": "investasi_bodong", "pesan": "Gabung grup trading kami! Profit pasti 30% per minggu, tanpa risiko, sudah 5000 member. Modal mulai 500rb, ajak teman dapat bonus 10%.", "expected": "TINGGI"},
+    {"id": "A07", "kategori": "lowongan_tugas", "pesan": "Halo kak, ada kerja part time dari rumah, cuma like video TikTok dapet 15rb/video. Nanti ada tugas premium, cukup deposit 200rb dulu buat aktivasi.", "expected": "TINGGI"},
+    {"id": "A08", "kategori": "hadiah", "pesan": "SELAMAT! Nomor anda memenangkan mobil dari undian Shopee 2026. Untuk klaim, transfer pajak hadiah Rp2.500.000 ke rek BRI 1234xxxx a.n. Panitia Undian.", "expected": "TINGGI"},
+    {"id": "A09", "kategori": "ambil_alih_wa", "pesan": "Maaf kak, tadi aku salah kirim kode 6 digit ke nomor kamu. Boleh tolong kirimin balik kodenya? Penting banget nih", "expected": "TINGGI"},
+    {"id": "A10", "kategori": "phishing_link", "pesan": "Akun DANA anda akan dinonaktifkan dalam 24 jam karena tidak verifikasi. Login di dana-verifikasi-akun.com untuk mempertahankan saldo.", "expected": "TINGGI"},
+    {"id": "A11", "kategori": "pinjol_ilegal", "pesan": "Pinjaman cair 5 menit tanpa BI checking, tanpa jaminan! Download aplikasi di link ini dan izinkan akses kontak untuk verifikasi.", "expected": "TINGGI"},
+    {"id": "A12", "kategori": "belanja_luar_marketplace", "pesan": "Kak iPhone 15 nya tinggal 1, harga 4 juta aja. Tapi transfer langsung ke rek pribadi ya kak biar ga kena potongan admin marketplace.", "expected": "TINGGI"},
+    {"id": "A13", "kategori": "mencurigakan_ringan", "pesan": "Halo, dengan bapak Budi? Saya dari bagian promosi, boleh minta waktunya sebentar untuk menawarkan produk asuransi?", "expected": "SEDANG"},
+    {"id": "A14", "kategori": "mencurigakan_ringan", "pesan": "Hai, kita pernah ketemu di acara kampus kan? Aku simpan nomormu dari grup. Lagi sibuk apa sekarang? 😊", "expected": "SEDANG"},
+    {"id": "A15", "kategori": "normal", "pesan": "Pak, rapat RT dipindah ke hari Minggu jam 7 malam di rumah Pak Joko ya. Terima kasih.", "expected": "RENDAH"},
+    {"id": "A16", "kategori": "normal", "pesan": "Ma, nanti aku pulang agak telat, ada kerja kelompok. Jangan lupa makan ya.", "expected": "RENDAH"},
+    {"id": "A17", "kategori": "normal", "pesan": "Pesanan Anda #INV2026101034 sudah dikirim. Lacak paket melalui menu Pesanan Saya di aplikasi.", "expected": "RENDAH"},
+    {"id": "A18", "kategori": "normal_bahasa_daerah", "pesan": "Lek, sesuk aku mampir omahmu yo, gowo jajan teko pasar. Ojo lali ngenteni.", "expected": "RENDAH"},
+    {"id": "A19", "kategori": "tidak_jelas", "pesan": "cek ini", "expected": "TIDAK_PASTI"},
+    {"id": "A20", "kategori": "sudah_korban", "pesan": "tadi aku udah transfer 1,5jt ke penjual hp di IG, sekarang akunnya ilang. ini penipuan ya?", "expected": "TINGGI", "expected_golden_hour": true}
+  ],
+  "golden_hour": [
+    {"id": "G01", "situasi": "Ibu saya baru saja menginstal file undangan pernikahan .apk dari nomor tidak dikenal sekitar jam 19.30. Mobile banking BRI ada di HP itu. Belum ada transfer keluar.", "expected_skenario": "A", "harus_ada": ["14017"]},
+    {"id": "G02", "situasi": "Saya transfer Rp2.000.000 jam 14.10 dari BCA ke rekening penjual motor di Facebook, rekening tujuan Mandiri atas nama Andi S. Penjualnya sekarang tidak bisa dihubungi.", "expected_skenario": "B", "harus_ada": ["1500888", "iasc.ojk.go.id"]},
+    {"id": "G03", "situasi": "Tadi ada yang telepon ngaku CS BNI, saya sudah kasih kode OTP yang masuk SMS sekitar 10 menit lalu.", "expected_skenario": "C", "harus_ada": ["1500046"]},
+    {"id": "G04", "situasi": "WhatsApp saya tidak bisa dibuka, ada yang minta kode 6 digit dan saya kasih. Sekarang teman-teman saya dimintai pinjam uang.", "expected_skenario": "D", "harus_ada": []},
+    {"id": "G05", "situasi": "Saya transfer 750 ribu lewat DANA untuk tugas premium like video, tadi jam 9 pagi. Sekarang saldo tugas tidak bisa ditarik.", "expected_skenario": "B", "harus_ada": ["iasc.ojk.go.id"]},
+    {"id": "G06", "situasi": "Saya nasabah Bank Jago, tadi transfer 3 juta ke orang yang ngaku dari kantor pajak jam 11.", "expected_skenario": "B", "harus_ada": ["iasc.ojk.go.id"]}
+  ]
+}

@@ -1,0 +1,41 @@
+KUESIONER VALIDASI JAGA
+(Kirim malam ini lewat WA atau Google Form ke 10 sampai 15 orang. Usahakan ada responden usia 45 tahun ke atas, misalnya orang tua sendiri, saudara, tetangga.)
+
+Pesan pembuka untuk dikirim:
+Halo, aku lagi ikut hackathon dan bikin asisten AI untuk bantu orang menghadapi penipuan online. Boleh minta tolong isi 2 menit? Jawabannya anonim. Makasih banyak 🙏
+
+1. Usia kamu?
+   a. di bawah 25   b. 25 sampai 44   c. 45 sampai 59   d. 60 ke atas
+
+2. Dalam 3 bulan terakhir, apakah kamu pernah menerima pesan yang kamu curigai penipuan (file APK undangan/kurir, telepon ngaku CS bank, hadiah, pinjol, kerja part time)?
+   a. Sering   b. Pernah 1 sampai 2 kali   c. Tidak pernah
+
+3. Apakah kamu atau keluargamu pernah sampai jadi korban (sempat transfer, instal file, atau memberi kode)?
+   a. Pernah   b. Hampir   c. Tidak pernah
+
+4. Kalau pernah, berapa lama setelah kejadian baru menghubungi bank atau melapor?
+   a. Kurang dari 1 jam   b. 1 sampai 12 jam   c. Lebih dari 12 jam   d. Tidak melapor
+
+5. Kalau besok kamu sadar baru saja ditipu, apakah kamu tahu langkah PERTAMA yang harus dilakukan?
+   a. Tahu persis   b. Kira-kira tahu   c. Tidak tahu
+
+6. Apakah kamu tahu nomor call center resmi bank yang kamu pakai, atau situs pelaporan penipuan OJK (IASC)?
+   a. Tahu keduanya   b. Tahu salah satu   c. Tidak tahu
+
+7. Apakah kamu mau memakai asisten yang bisa mengecek pesan mencurigakan dan memandu langkah darurat?
+   a. Mau   b. Mungkin   c. Tidak
+
+8. Fitur apa yang paling penting buatmu? (boleh pilih lebih dari satu)
+   a. Cek pesan/link/file
+   b. Panduan langkah darurat
+   c. Draft laporan otomatis
+   d. Kabari keluarga saat darurat
+
+9. (Opsional) Ceritakan singkat pengalamanmu atau keluargamu dengan penipuan online.
+
+
+Cara pakai hasilnya di submission:
+- Pertanyaan 5 dan 6 = bukti insight golden hour (orang tidak tahu langkah pertama)
+- Pertanyaan 4 = bandingkan dengan data OJK (80% laporan lebih dari 12 jam)
+- Pertanyaan 7 dan 8 = bukti minat dan prioritas fitur
+- Pertanyaan 9 = ambil 1 sampai 2 kutipan (tanpa nama) untuk slide masalah

@@ -1,0 +1,21 @@
+MULAI DARI SINI - Paket JAGA
+
+Status terakhir (11 Oktober 2026):
+- Smoke test Bob <-> Langflow sudah berhasil (tool ping dipanggil dari Bob, server MCP bernama jaga-langflow)
+- Mode JAGA di Bob sudah terpasang dan terbaca
+- Flow dibangun langsung di Langflow (bukan lewat file): Chat Input + Text Input "Knowledge Base JAGA" -> Prompt Template -> Language Model (Groq) -> Chat Output. Hanya dua flow: jaga_analisis_pesan dan jaga_golden_hour
+- Tidak ada Astra DB dan tidak ada kirim Gmail. Penyimpanan kronologi dan draft pesan keluarga dilakukan Bob, dengan persetujuan user
+
+Urutan kerja berikutnya:
+
+1. Salin folder bob/.bob versi terbaru (custom_modes.yaml, rules-jaga, mcp.json.example) ke workspace Bob, lalu buat folder laporan/ di root workspace. Restart Bob. Jangan timpa .bob/mcp.json yang sudah berfungsi
+2. Uji 4 skenario di bob/SETUP_BOB_DAN_SMOKE_TEST.md (Cek, Golden Hour, simpan kronologi + draft pesan keluarga, uji OTP). Rekam layar
+3. Jalankan tests/run_eval.py ke Langflow kalau kuota LLM cukup (26 kasus; jangan habiskan kuota yang disimpan untuk demo), lalu tambahkan angkanya ke README.md bagian 7.2, slide Pengujian, dan form. Sementara itu hasil uji awal manual 6 kasus sudah tertulis di README, form, naskah, dan slide
+4. Kirim submission/03_kuesioner_validasi.txt ke 10-15 orang (kalau belum), lalu isi hasilnya
+5. Isi bagian [kurung siku] di submission/01_jawaban_form_submission.txt dan di deck
+6. Upload folder ini ke GitHub (README.md sudah jadi dokumentasi teknis). Jangan commit file .bob/mcp.json asli karena berisi API key, cukup mcp.json.example. Folder _shared tidak perlu diupload
+
+Placeholder yang wajib kamu isi sendiri:
+- Hasil kuesioner (form bagian 2, slide "Siapa yang paling terdampak", naskah pitching)
+- Angka evaluasi otomatis 26 kasus (opsional, kalau sempat dijalankan)
+- Link repo, demo, sertifikat SkillsBuild

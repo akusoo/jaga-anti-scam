@@ -1,0 +1,87 @@
+JAWABAN FORM SUBMISSION HACKATHON - JAGA
+(Disusun mengikuti 5 bagian di slide 35. Bagian dalam kurung siku diisi sendiri.)
+
+
+BAGIAN 1 - INFORMASI TIM
+
+Tipe peserta: Individu
+Nama: Aqsha Fadhli Azhim
+Akun IBM SkillsBuild: [email akun SkillsBuild]
+Sertifikat IBM SkillsBuild University Education 2026: [link atau file sertifikat]
+
+
+BAGIAN 2 - PROJECT OVERVIEW
+
+Judul project:
+JAGA - Asisten Tanggap Darurat Penipuan Digital
+
+Tema:
+Financial
+
+Deskripsi singkat:
+JAGA adalah asisten AI yang membantu masyarakat, terutama orang tua dan pengguna yang kurang melek digital, menghadapi penipuan digital di dua momen. Sebelum tertipu, JAGA mengecek pesan, link, atau file yang mencurigakan dan menjelaskan risikonya dengan bahasa sederhana. Sesudah tertipu, JAGA masuk mode darurat: memandu langkah penyelamatan dana di satu jam pertama, menampilkan kontak resmi bank dan OJK, lalu menyiapkan draft kronologi laporan IASC yang siap dikirim. JAGA dibangun dengan Langflow sebagai mesin workflow dan IBM Bob sebagai antarmuka percakapan.
+
+Problem statement:
+Bagaimana cara kita membantu korban penipuan digital, terutama orang tua dan pengguna yang kurang melek digital, mengambil langkah penyelamatan dana dalam satu jam pertama, meskipun mereka panik dan tidak tahu harus melapor ke mana?
+
+Latar belakang dan data:
+Sejak beroperasi 22 November 2024 sampai 30 September 2026, Indonesia Anti-Scam Centre (IASC) OJK menerima 702.342 laporan penipuan transaksi keuangan. Per Januari 2026, total kerugian yang dilaporkan mencapai Rp9,1 triliun, sedangkan dana yang berhasil diblokir sekitar Rp436,88 miliar. OJK juga menyampaikan bahwa sekitar 80% laporan baru masuk lebih dari 12 jam setelah kejadian, padahal dana hasil penipuan bisa berpindah dari rekening korban dalam waktu kurang dari 1 jam. Artinya, masalah terbesar bukan hanya kurangnya pengetahuan tentang modus, tetapi jeda antara kejadian dan tindakan. Korban panik dan tidak tahu langkah pertamanya.
+
+Target user:
+1. Pengguna mobile banking dan e-wallet berusia 45 tahun ke atas yang rentan terhadap modus APK, fake call, dan tautan palsu
+2. Anggota keluarga (anak) yang ingin melindungi orang tuanya
+3. Pengguna umum yang menerima pesan mencurigakan
+
+Fitur utama:
+1. Mode Cek: menilai risiko pesan (TINGGI, SEDANG, RENDAH, TIDAK_PASTI), menunjukkan tanda bahaya yang terlihat di pesan, menjelaskan dengan bahasa sederhana, memberi saran tindakan beserta sumbernya
+2. Mode Golden Hour: mengenali skenario darurat (sudah instal APK, sudah transfer, sudah memberi OTP/PIN, akun diambil alih), memberi langkah berurutan yang mendahulukan penghentian kerugian, menampilkan kontak resmi, menyusun draft kronologi laporan IASC dan checklist bukti
+3. Mode Penjaga Keluarga: menyusun draft pesan WhatsApp atau SMS singkat untuk keluarga (tanpa data rekening) yang disalin dan dikirim sendiri oleh user. Bob juga bisa menyimpan draft kronologi ke file laporan/ setelah user setuju
+4. Pengaman bawaan: menolak menerima PIN/OTP, tidak pernah menyatakan pesan "100% aman", JAGA tidak pernah mengirim apa pun sendiri, dan file hanya disimpan setelah user menjawab setuju
+
+Validasi user:
+[Isi dari hasil kuesioner, contoh: "Dari X responden, Y% pernah menerima pesan penipuan dalam 3 bulan terakhir, Z% tidak tahu langkah pertama yang harus dilakukan jika sudah tertipu, dan W% bersedia memakai asisten seperti JAGA."]
+
+
+BAGIAN 3 - BUKTI TEKNIS
+
+Penggunaan Langflow:
+Seluruh logika eksekusi berada di Langflow dalam satu project bernama JAGA yang berisi dua flow utama:
+1. jaga_analisis_pesan: Chat Input dan komponen Text Input "Knowledge Base JAGA" masuk ke Prompt Template, lalu Language Model (Groq (openai/gpt-oss-120b)), lalu Chat Output. Menghasilkan JSON terstruktur berisi tingkat risiko, modus, tanda bahaya, saran tindakan, sumber, dan penanda apakah user perlu mode darurat
+2. jaga_golden_hour: susunan komponen yang sama, dengan prompt darurat. Menghasilkan langkah berurutan, kontak relevan, draft kronologi, dan checklist bukti
+Keempat dokumen knowledge base (modus penipuan, langkah darurat, kontak resmi, template kronologi; sekitar 25 KB) digabung dan disuntikkan langsung ke prompt lewat komponen Text Input, tanpa vector search. Pilihan ini sengaja: untuk knowledge base sekecil ini, grounding penuh lebih andal dan tidak ada risiko retrieval mengambil potongan yang meleset. Retrieval vector (Astra DB) ada di roadmap saat knowledge base membesar.
+API key LLM disimpan sebagai Global Variable Langflow (OPENAI_COMPATIBLE_API_KEY), bukan ditempel di komponen; base URL Groq juga sebagai Global Variable (OPENAI_COMPATIBLE_BASE_URL), bukan ditempel di komponen.
+
+Penggunaan IBM Bob:
+IBM Bob menjadi antarmuka percakapan melalui custom mode bernama JAGA (.bob/custom_modes.yaml) dengan aturan di .bob/rules-jaga: persona dan gaya bahasa sederhana untuk orang tua, aturan pemilihan tool, dan aturan keselamatan. Bob bertugas memahami maksud user, membedakan pertanyaan biasa dan situasi darurat, memanggil flow Langflow yang tepat, menjelaskan hasil, menolak menerima PIN/OTP, menyusun draft pesan untuk keluarga, dan menyimpan draft kronologi ke file laporan/kronologi-<tanggal-jam>.md hanya setelah user menjawab setuju. Mode JAGA hanya diberi tool group MCP dan hak edit yang dibatasi ke file laporan/*.md (prinsip least privilege), tanpa terminal. Bob juga dipakai selama pengembangan untuk menyusun script evaluasi dan dokumentasi. [hapus kalimat terakhir ini kalau tidak dilakukan]
+
+Integrasi keduanya:
+Project Langflow JAGA diekspos sebagai MCP server sehingga setiap flow menjadi tool dengan nama dan deskripsi yang jelas. Bob terhubung ke MCP server tersebut melalui .bob/mcp.json. Alur: user berbicara ke Bob, Bob memilih tool (jaga_analisis_pesan atau jaga_golden_hour), Langflow menjalankan workflow dan mengembalikan hasil, lalu Bob menjelaskannya ke user. Kedua tool masuk daftar alwaysAllow supaya cepat dalam keadaan darurat, sedangkan penulisan file tidak, sehingga Bob tetap meminta approval sebelum file kronologi ditulis. JAGA tidak pernah mengirim apa pun sendiri. Ini menerapkan prinsip "logika workflow di Langflow, logika percakapan di Bob".
+
+Pengujian:
+Evaluasi 26 kasus berlabel dijalankan ke kedua flow di Langflow (model openai/gpt-oss-120b via Groq), semua kasus mengembalikan jawaban tanpa error.
+Flow 1 (20 pesan): akurasi label 85% (17/20); semua 13 pesan penipuan yang jelas terdeteksi berisiko; 0 dari 4 pesan normal (termasuk bahasa Jawa) salah dituduh penipuan; output JSON valid dan disclaimer selalu ada (20/20). Kesalahan: satu pesan belanja di luar marketplace dinilai SEDANG (diharapkan TINGGI), dan dua pesan "mencurigakan ringan" (telemarketing, orang asing mengaku kenal) dinilai RENDAH.
+Flow 2 (6 skenario darurat): skenario utama tepat 5/6 (satu diberi label gabungan C dan D), kontak resmi yang diharapkan selalu muncul (6/6), tidak ada nomor karangan, tidak pernah meminta PIN/OTP, tidak menjanjikan dana kembali. Temuan perbaikan: sebagian kronologi masih menuliskan tindakan yang belum dilakukan user, dan dua checklist menyarankan menyimpan SMS OTP sebagai bukti.
+Sebelumnya juga dilakukan uji awal manual 6 kasus dan satu iterasi perbaikan prompt Flow 2. Detail lengkap ada di README bagian 7.
+
+Link repository / project: [link GitHub]
+Link video demo (jika ada): [link]
+
+
+BAGIAN 4 - PITCHING DECK DAN BUKTI
+
+Pitching deck: [link atau file deck]
+
+Screenshot yang disiapkan (3 sampai 5):
+1. Canvas Langflow flow jaga_analisis_pesan dan jaga_golden_hour
+2. Tab MCP Server Langflow yang menampilkan flow sebagai tool
+3. Panel MCP di IBM Bob yang menampilkan tool jaga-langflow terhubung, dan mode JAGA terpilih
+4. Percakapan Mode Cek: pesan APK kurir dinilai TINGGI beserta penjelasannya
+5. Percakapan Mode Golden Hour: langkah darurat, lalu permintaan konfirmasi "Simpan kronologi ini ke file? Balas YA" dan file di folder laporan/
+
+
+BAGIAN 5 - PERNYATAAN AKHIR
+
+Centang semua pernyataan orisinalitas dan kebenaran data. Sebelum submit, cek:
+- Sertifikat SkillsBuild sudah terlampir
+- Link repository, deck, dan video bisa dibuka tanpa login (cek di jendela incognito)
+- Hasil pengujian di Bagian 3 sesuai kondisi terakhir

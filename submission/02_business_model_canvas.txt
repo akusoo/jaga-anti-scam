@@ -1,0 +1,51 @@
+BUSINESS MODEL CANVAS - JAGA
+
+1. Customer Segments
+- Pengguna akhir: pengguna mobile banking dan e-wallet berusia 45 tahun ke atas, serta keluarganya
+- Pelanggan berbayar (B2B): bank, terutama bank daerah dan bank digital; penyedia e-wallet; operator seluler
+- Mitra sosial: komunitas, kampus, dan program CSR literasi digital
+
+2. Value Propositions
+- Untuk pengguna: tahu dalam hitungan detik apakah pesan berbahaya; saat sudah tertipu, tahu persis langkah pertama dan kronologi laporan siap dalam kurang dari 10 menit
+- Untuk keluarga: mendapat draft pesan siap kirim ketika orang tua dalam situasi darurat, dikirim sendiri oleh user
+- Untuk bank dan e-wallet: nasabah melapor lebih cepat sehingga peluang menunda atau memblokir dana lebih besar, laporan yang masuk sudah rapi, dan beban call center berkurang
+
+3. Channels
+- Asisten percakapan (versi saat ini lewat IBM Bob; roadmap: WhatsApp dan widget aplikasi)
+- Integrasi sebagai fitur di aplikasi bank atau e-wallet (white label / API)
+- Kampanye literasi digital bersama komunitas, kampus, dan program CSR
+
+4. Customer Relationships
+- Self-service melalui percakapan
+- Mode Penjaga Keluarga yang melibatkan anggota keluarga
+- Eskalasi ke manusia: kontak OJK 157 dan call center bank resmi
+
+5. Revenue Streams
+- B2B API: biaya per pengecekan atau langganan bulanan untuk bank dan e-wallet
+- Lisensi white label untuk bank daerah dan bank digital
+- Freemium konsumen: Mode Cek dan Golden Hour gratis selamanya; paket keluarga berbayar untuk beberapa kontak darurat dan riwayat
+- Program sponsor CSR untuk kampanye literasi digital lansia
+
+Catatan: fitur darurat sengaja tidak pernah berbayar, karena membatasi akses saat darurat akan bertentangan dengan tujuan produk.
+
+6. Key Resources
+- Knowledge base modus penipuan dan langkah darurat yang dikurasi dari sumber resmi
+- Workflow Langflow, LLM openai/gpt-oss-120b via Groq, integrasi IBM Bob
+- Test set evaluasi untuk menjaga kualitas deteksi
+
+7. Key Activities
+- Memperbarui knowledge base setiap ada modus baru dari rilis OJK, BI, dan bank
+- Evaluasi berkala akurasi dan false-safe rate
+- Edukasi dan kemitraan
+
+8. Key Partners
+- OJK dan IASC sebagai rujukan pelaporan resmi
+- Bank dan e-wallet
+- IBM (watsonx, Bob), Langflow, dan Groq
+- Komunitas cek fakta, komunitas lansia, kampus
+
+9. Cost Structure
+- Biaya API model LLM (Groq)
+- Hosting Langflow
+- Kurasi konten dan pembaruan knowledge base
+- Pemasaran, edukasi, dan pengembangan kemitraan
